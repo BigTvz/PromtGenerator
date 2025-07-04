@@ -14,6 +14,8 @@ import ShadowDepthSelector from './components/ConfiguratorSections/ShadowDepthSe
 import TypographyOptionsSelector from './components/ConfiguratorSections/TypographyOptionsSelector';
 import TextSizesSelector from './components/ConfiguratorSections/TextSizesSelector';
 import AnimationSettingsSelector from './components/ConfiguratorSections/AnimationSettingsSelector';
+import TopicInput from './components/ConfiguratorSections/TopicInput';
+import PageTypeSelector from './components/ConfiguratorSections/PageTypeSelector'; // Added PageTypeSelector
 import { usePromptStore } from './store/promptStore';
 import { generatePrompt } from './utils/promptGenerator';
 // Import other configurator sections here as they are created
@@ -33,7 +35,7 @@ function App() {
         {/* Configuration Options Area (Top) */}
         {/* This will need to be scrollable if content exceeds viewport height */}
         <motion.div
-          className="flex-grow bg-gray-800 p-4 overflow-y-auto"
+          className="flex-grow bg-gray-800 p-6 overflow-y-auto"  // Changed p-4 to p-6
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -41,6 +43,8 @@ function App() {
           <h2 className="text-lg font-medium text-gray-200 mb-6 text-center">Configuration Options</h2>
           {/* Grid for configurator sections */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <TopicInput />
+            <PageTypeSelector /> {/* Added PageTypeSelector to the grid */}
             <LayoutTypeSelector />
             <TemplateSelector />
             <LayoutConfigurationSelector />

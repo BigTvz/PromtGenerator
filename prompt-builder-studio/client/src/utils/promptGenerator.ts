@@ -1,7 +1,30 @@
-import { PromptConfig } from '../types/promptConfig';
+import { PromptConfig, PageType } from '../types/promptConfig';
 
 export function generatePrompt(config: PromptConfig): string {
-  let prompt = `Create a ${config.template ? config.template + ' section' : 'custom section'} for a ${config.layoutType} app`;
+  let subject = "";
+  let context = `for a ${config.layoutType} app`;
+
+  if (config.topic) {
+    context += ` about ${config.topic}`;
+  }
+
+  if (config.pageType) {
+    subject = config.pageType;
+    if (config.template) {
+      // e.g., "a hero section for your Landing Page"
+      subject = `a ${config.template} section for your ${config.pageType}`;
+    } else {
+      // e.g., "a Landing Page, including key sections like hero, features, etc."
+      // This part could be made more dynamic based on common sections for a pageType
+      subject = `a ${config.pageType}, including common sections like a hero, features, and testimonials`;
+    }
+  } else if (config.template) {
+    subject = `a ${config.template} section`;
+  } else {
+    subject = "a custom UI component/section";
+  }
+
+  let prompt = `Create ${subject} ${context}`;
 
   if (config.layoutConfiguration) {
     prompt += ` with a ${config.layoutConfiguration.replace(/-/g, ' ')} layout`;

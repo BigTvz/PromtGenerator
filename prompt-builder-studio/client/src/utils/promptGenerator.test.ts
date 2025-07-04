@@ -1,6 +1,8 @@
 import { generatePrompt } from './promptGenerator';
 import { PromptConfig, initialPromptConfig } from '../types/promptConfig';
 
+import { PageType } from '../types/promptConfig'; // Import PageType
+
 describe('generatePrompt', () => {
   it('should generate a basic prompt with default web settings', () => {
     const config: PromptConfig = {
@@ -10,7 +12,8 @@ describe('generatePrompt', () => {
     };
     const prompt = generatePrompt(config);
     expect(prompt).toContain('Create a hero section for a web app.');
-    expect(prompt).toContain('flat style.'); // Default visual style
+    // Visual style is now 'flat' by default in initialPromptConfig
+    expect(prompt).toContain('flat style.');
     expect(prompt).toContain('Light mode theme.'); // Default theme
     expect(prompt).toContain('Accent color: Primary'); // Default accent
   });
@@ -132,6 +135,60 @@ describe('generatePrompt', () => {
     // Current generator includes "Shadow: none." if it's none and not null.
     // If shadowDepth is null (which it is in initialPromptConfig), it should not mention shadow.
     expect(prompt).not.toContain("Shadow:");
+  });
+
+  // New tests for topic and pageType
+  it('should include topic when specified', () => {
+    const config: PromptConfig = {
+      ...initialPromptConfig,
+      topic: 'sustainable gardening',
+      template: 'features',
+    };
+    const prompt = generatePrompt(config);
+    expect(prompt).toContain('Create a features section for a web app about sustainable gardening.');
+  });
+
+  it('should use pageType as the main subject if template is null', () => {
+    const config: PromptConfig = {
+      ...initialPromptConfig,
+      topic: 'AI-powered analytics',
+      pageType: 'Dashboard Overview',
+      template: null,
+    };
+    const prompt = generatePrompt(config);
+    expect(prompt).toContain('Create a Dashboard Overview, including common sections like a hero, features, and testimonials for a web app about AI-powered analytics.');
+  });
+
+  it('should use template as a subsection of pageType if both are specified', () => {
+    const config: PromptConfig = {
+      ...initialPromptConfig,
+      topic: 'gourmet cat food',
+      pageType: 'Landing Page',
+      template: 'hero',
+    };
+    const prompt = generatePrompt(config);
+    expect(prompt).toContain('Create a hero section for your Landing Page for a web app about gourmet cat food.');
+  });
+
+  it('should handle pageType without topic', () => {
+    const config: PromptConfig = {
+      ...initialPromptConfig,
+      pageType: 'Contact Page',
+      template: null,
+    };
+    const prompt = generatePrompt(config);
+    expect(prompt).toContain('Create a Contact Page, including common sections like a hero, features, and testimonials for a web app.');
+  });
+
+  it('should generate a prompt for a custom section with a topic', () => {
+    const config: PromptConfig = {
+      ...initialPromptConfig,
+      topic: 'vintage cars',
+      template: null,
+      pageType: null,
+    };
+    const prompt = generatePrompt(config);
+    expect(prompt).toContain('Create a custom UI component/section for a web app about vintage cars.');
   });
 
 });

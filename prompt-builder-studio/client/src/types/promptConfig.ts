@@ -1,6 +1,22 @@
 // prompt-builder-studio/client/src/types/promptConfig.ts
 
+export type PageType =
+  | 'Landing Page'
+  | 'Home Page'
+  | 'About Us Page'
+  | 'Contact Page'
+  | 'Product List Page'
+  | 'Product Detail Page'
+  | 'Blog Index Page'
+  | 'Blog Post Page'
+  | 'Dashboard Overview'
+  | 'Settings Page'
+  | 'User Profile Page'
+  | null;
+
 export interface PromptConfig {
+  topic: string;
+  pageType: PageType;
   layoutType: 'web' | 'mobile';
   template: 'hero' | 'features' | 'onboarding' | 'docs' | 'updates' | 'portfolio' | 'pricing' | 'contact' | 'testimonials' | 'login' | 'signup' | 'dashboard' | 'blog' | null;
   layoutConfiguration: 'card' | 'list' | '2-2-square' | 'table' | 'sidebar-left' | 'sidebar-right' | 'grid-2x2' | 'grid-3x3' | 'grid-4x4' | 'masonry' | null;
@@ -49,6 +65,8 @@ export interface PromptConfig {
 }
 
 export const initialPromptConfig: PromptConfig = {
+  topic: '',
+  pageType: null,
   layoutType: 'web',
   template: null,
   layoutConfiguration: null,
