@@ -108,21 +108,21 @@ const BackgroundColorSelector: React.FC = () => {
             type="text"
             placeholder="Direction (e.g., 'to bottom right')"
             value={backgroundColor.gradientDetails?.direction || ''}
-            onChange={(e) => updateNestedConfig('backgroundColor', 'gradientDetails', { direction: '', fromColor: '', toColor: '', ...backgroundColor.gradientDetails, direction: e.target.value })}
+            onChange={(e) => updateNestedConfig('backgroundColor', 'gradientDetails', { ...{direction: '', fromColor: '', toColor: ''}, ...backgroundColor.gradientDetails, direction: e.target.value })}
             className="mt-1 block w-full px-3 py-2 border-gray-600 bg-gray-700 text-white rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
           <input
             type="text"
             placeholder="From Color (e.g., 'blue-500')"
             value={backgroundColor.gradientDetails?.fromColor || ''}
-            onChange={(e) => updateNestedConfig('backgroundColor', 'gradientDetails', { direction: '', fromColor: '', toColor: '', ...backgroundColor.gradientDetails, fromColor: e.target.value })}
+            onChange={(e) => updateNestedConfig('backgroundColor', 'gradientDetails', { ...{direction: '', fromColor: '', toColor: ''}, ...backgroundColor.gradientDetails, fromColor: e.target.value })}
             className="mt-1 block w-full px-3 py-2 border-gray-600 bg-gray-700 text-white rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
           <input
             type="text"
             placeholder="To Color (e.g., 'purple-600')"
             value={backgroundColor.gradientDetails?.toColor || ''}
-            onChange={(e) => updateNestedConfig('backgroundColor', 'gradientDetails', { direction: '', fromColor: '', toColor: '', ...backgroundColor.gradientDetails, toColor: e.target.value })}
+            onChange={(e) => updateNestedConfig('backgroundColor', 'gradientDetails', { ...{direction: '', fromColor: '', toColor: ''}, ...backgroundColor.gradientDetails, toColor: e.target.value })}
             className="mt-1 block w-full px-3 py-2 border-gray-600 bg-gray-700 text-white rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500"
           />
         </div>
