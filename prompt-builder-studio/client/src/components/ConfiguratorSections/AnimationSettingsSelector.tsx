@@ -41,8 +41,8 @@ const AnimationSettingsSelector: React.FC = () => {
   };
 
   return (
-    <div className="py-4 px-2 border-b border-gray-700 space-y-4">
-      <h3 className="text-sm font-medium text-gray-300 mb-1 px-2">12. Effects & Animations</h3>
+    <div className="bg-slate-700 p-4 rounded-lg shadow space-y-4">
+      <h3 className="text-sm font-medium text-gray-300 mb-1">12. Effects & Animations</h3>
 
       {/* Effects (Multi-select checkboxes) */}
       <div>

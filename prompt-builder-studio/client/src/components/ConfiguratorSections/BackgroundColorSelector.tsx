@@ -39,8 +39,8 @@ const BackgroundColorSelector: React.FC = () => {
   // TODO: Add inputs for gradientDetails and imageUrl based on type
 
   return (
-    <div className="py-4 px-2 border-b border-gray-700 space-y-3">
-      <label htmlFor="backgroundColorType" className="block text-sm font-medium text-gray-300 mb-1 px-2">
+    <div className="bg-slate-700 p-4 rounded-lg shadow space-y-3">
+      <label htmlFor="backgroundColorType" className="block text-sm font-medium text-gray-300 mb-1">
         7. Background Color
       </label>
       <select
@@ -100,19 +100,49 @@ const BackgroundColorSelector: React.FC = () => {
         </div>
       )}
 
-      {/* Placeholder for Gradient Picker */}
+      {/* Gradient Picker Inputs */}
       {backgroundColor.type === 'gradient' && (
-        <div className="p-3 bg-gray-700 rounded-md">
-          <p className="text-sm text-gray-400">Gradient picker UI will go here.</p>
-          {/* Inputs for direction, fromColor, toColor */}
+        <div className="space-y-2 pt-2">
+          <label className="block text-xs font-medium text-gray-400">Gradient Details</label>
+          <input
+            type="text"
+            placeholder="Direction (e.g., 'to bottom right')"
+            value={backgroundColor.gradientDetails?.direction || ''}
+            onChange={(e) => updateNestedConfig('backgroundColor', 'gradientDetails', { direction: '', fromColor: '', toColor: '', ...backgroundColor.gradientDetails, direction: e.target.value })}
+            className="mt-1 block w-full px-3 py-2 border-gray-600 bg-gray-700 text-white rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+          <input
+            type="text"
+            placeholder="From Color (e.g., 'blue-500')"
+            value={backgroundColor.gradientDetails?.fromColor || ''}
+            onChange={(e) => updateNestedConfig('backgroundColor', 'gradientDetails', { direction: '', fromColor: '', toColor: '', ...backgroundColor.gradientDetails, fromColor: e.target.value })}
+            className="mt-1 block w-full px-3 py-2 border-gray-600 bg-gray-700 text-white rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
+          <input
+            type="text"
+            placeholder="To Color (e.g., 'purple-600')"
+            value={backgroundColor.gradientDetails?.toColor || ''}
+            onChange={(e) => updateNestedConfig('backgroundColor', 'gradientDetails', { direction: '', fromColor: '', toColor: '', ...backgroundColor.gradientDetails, toColor: e.target.value })}
+            className="mt-1 block w-full px-3 py-2 border-gray-600 bg-gray-700 text-white rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
         </div>
       )}
 
-      {/* Placeholder for Image Uploader */}
+      {/* Image URL Input */}
       {backgroundColor.type === 'image' && (
-        <div className="p-3 bg-gray-700 rounded-md">
-          <p className="text-sm text-gray-400">Image uploader/URL input will go here.</p>
-          {/* Input for imageUrl */}
+        <div className="pt-2">
+          <label htmlFor="backgroundImageUrl" className="block text-xs font-medium text-gray-400 mb-1">
+            Image URL
+          </label>
+          <input
+            type="text"
+            id="backgroundImageUrl"
+            name="backgroundImageUrl"
+            placeholder="https://example.com/image.png"
+            value={backgroundColor.imageUrl || ''}
+            onChange={(e) => updateNestedConfig('backgroundColor', 'imageUrl', e.target.value)}
+            className="mt-1 block w-full px-3 py-2 border-gray-600 bg-gray-700 text-white rounded-md text-sm focus:ring-indigo-500 focus:border-indigo-500"
+          />
         </div>
       )}
 

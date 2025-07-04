@@ -28,18 +28,22 @@ function App() {
         <h1 className="text-xl font-semibold">Prompt Builder Studio</h1>
       </header>
 
-      <div className="flex flex-1" style={{ maxHeight: 'calc(100vh - 4rem)' /* Assuming header is 4rem (h-16) */ }}>
-        {/* Left Sidebar: Configurator Sections */}
-        <motion.aside
-          className="w-1/3 bg-gray-800 p-4 space-y-4 overflow-y-auto border-r border-gray-700" // Reduced space-y, added border
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
+      {/* Main content area: Config options on top, prompt output at bottom */}
+      <div className="flex flex-col flex-1 overflow-hidden">
+        {/* Configuration Options Area (Top) */}
+        {/* This will need to be scrollable if content exceeds viewport height */}
+        <motion.div
+          className="flex-grow bg-gray-800 p-4 overflow-y-auto"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-lg font-medium text-gray-200 mb-4">Configuration Options</h2>
-          <LayoutTypeSelector />
-          <TemplateSelector />
-          <LayoutConfigurationSelector />
+          <h2 className="text-lg font-medium text-gray-200 mb-6 text-center">Configuration Options</h2>
+          {/* Grid for configurator sections */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <LayoutTypeSelector />
+            <TemplateSelector />
+            <LayoutConfigurationSelector />
           <FramingStyleSelector />
           <VisualStyleSelector />
           <ThemeModeSelector />
@@ -50,20 +54,21 @@ function App() {
           <TypographyOptionsSelector />
           <TextSizesSelector />
           <AnimationSettingsSelector />
-          {/* More configurator components will be added here */}
-          {/* ... and so on for all 12 sections */}
-        </motion.aside>
+          </div> {/* Close grid */}
+        </motion.div>
 
-        {/* Right Content Area: Prompt Output and Preview */}
-        <motion.main
-          className="w-2/3 p-6 bg-gray-900"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
+        {/* Generated Prompt Area (Bottom) */}
+        {/* This section will be fixed at the bottom, allow its content to scroll if needed */}
+        <motion.div
+          className="flex-shrink-0 bg-gray-900 p-6 border-t border-gray-700"
+          style={{ height: '30vh', overflowY: 'auto' }} // Example fixed height, adjust as needed
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h2 className="text-lg font-medium text-gray-200 mb-4">Generated Prompt</h2>
-          <div className="bg-gray-800 p-4 rounded-md shadow relative">
-            <pre className="whitespace-pre-wrap text-sm text-gray-300">
+          <h2 className="text-lg font-medium text-gray-200 mb-4 sticky top-0 bg-gray-900 py-2">Generated Prompt</h2>
+          <div className="bg-gray-800 p-4 rounded-md shadow relative h-full"> {/* Ensure pre takes available height */}
+            <pre className="whitespace-pre-wrap text-sm text-gray-300 h-full overflow-y-auto">
               {generatedPrompt}
             </pre>
             <div className="absolute top-2 right-2 flex space-x-2">
@@ -105,7 +110,7 @@ function App() {
             </div>
           </div>
           */}
-        </motion.main>
+        </motion.div>
       </div>
     </div>
   );

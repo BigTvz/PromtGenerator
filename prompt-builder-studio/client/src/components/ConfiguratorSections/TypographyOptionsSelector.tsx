@@ -15,8 +15,8 @@ const TypographyOptionsSelector: React.FC = () => {
   };
 
   return (
-    <div className="py-4 px-2 border-b border-gray-700 space-y-4">
-      <h3 className="text-sm font-medium text-gray-300 mb-1 px-2">10. Typography Options</h3>
+    <div className="bg-slate-700 p-4 rounded-lg shadow space-y-4">
+      <h3 className="text-sm font-medium text-gray-300 mb-1">10. Typography Options</h3>
 
       {/* Typeface Family */}
       <div>

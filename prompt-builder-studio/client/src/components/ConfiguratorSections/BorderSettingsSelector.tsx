@@ -47,8 +47,8 @@ const BorderSettingsSelector: React.FC = () => {
   };
 
   return (
-    <div className="py-4 px-2 border-b border-gray-700 space-y-4">
-      <h3 className="text-sm font-medium text-gray-300 mb-1 px-2">8. Border Settings</h3>
+    <div className="bg-slate-700 p-4 rounded-lg shadow space-y-4">
+      <h3 className="text-sm font-medium text-gray-300 mb-1">8. Border Settings</h3>
 
       {/* Border Color Type */}
       <div>

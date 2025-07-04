@@ -15,8 +15,8 @@ const TextSizesSelector: React.FC = () => {
   };
 
   return (
-    <div className="py-4 px-2 border-b border-gray-700 space-y-4">
-      <h3 className="text-sm font-medium text-gray-300 mb-1 px-2">11. Text Sizes</h3>
+    <div className="bg-slate-700 p-4 rounded-lg shadow space-y-4">
+      <h3 className="text-sm font-medium text-gray-300 mb-1">11. Text Sizes</h3>
 
       {/* Heading Size */}
       <div>

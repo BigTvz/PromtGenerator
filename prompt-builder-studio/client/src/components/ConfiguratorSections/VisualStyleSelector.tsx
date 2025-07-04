@@ -25,8 +25,8 @@ const VisualStyleSelector: React.FC = () => {
   };
 
   return (
-    <div className="py-4 px-2 border-b border-gray-700">
-      <label htmlFor="visualStyle" className="block text-sm font-medium text-gray-300 mb-1 px-2">
+    <div className="bg-slate-700 p-4 rounded-lg shadow">
+      <label htmlFor="visualStyle" className="block text-sm font-medium text-gray-300 mb-1">
         4. Visual Style
       </label>
       <select
